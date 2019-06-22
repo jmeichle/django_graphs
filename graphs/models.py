@@ -30,11 +30,11 @@ class Node(TimestampedModel):
     value = models.CharField(max_length=200)
 
 class Edge(TimestampedModel):
-    src_node = models.ForeignKey(Node,
-        on_delete=models.PROTECT,
-        related_name='%(class)s_src_node'
-    )
-    dst_node = models.ForeignKey(Node,
-        on_delete=models.PROTECT,
-        related_name='%(class)s_dst_node'
-    )
+    value = models.CharField(max_length=200)
+
+class NodeEdge(models.Model):
+    node = models.ForeignKey(Node, on_delete=models.CASCADE)
+    edge = models.ForeignKey(Edge, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('node', 'edge')
