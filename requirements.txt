@@ -6,3 +6,4 @@ djangorestframework==3.9.1
 networkx
 jupyter
 matplotlib
+IPython
