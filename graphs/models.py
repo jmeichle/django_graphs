@@ -24,19 +24,17 @@ class TimestampedModel(models.Model):
 
 class Graph(TimestampedModel):
     name = models.CharField(max_length=200)
-    created = models.DateTimeField('date published')
 
 class Node(TimestampedModel):
     graph = models.ForeignKey(Graph, on_delete=models.CASCADE)
     value = models.CharField(max_length=200)
 
 class Edge(TimestampedModel):
-    src_node = models.ForeignKey(Graph,
+    src_node = models.ForeignKey(Node,
         on_delete=models.PROTECT,
         related_name='%(class)s_src_node'
     )
-    dst_node = models.ForeignKey(Graph,
+    dst_node = models.ForeignKey(Node,
         on_delete=models.PROTECT,
         related_name='%(class)s_dst_node'
     )
-
