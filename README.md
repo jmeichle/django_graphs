@@ -85,7 +85,7 @@ In [2]: n1 = Node.objects.create(graph=g, value="FirstNode")
 
 In [3]: n2 = Node.objects.create(graph=g, value="SecondNode")
 
-In [4]: e1 = Edge.objects.create(value='foobar')
+In [4]: e1 = Edge.objects.create(graph=g, value='foobar')
 
 In [5]: ne1 = NodeEdge.objects.create(node=n1, edge=e1)
 

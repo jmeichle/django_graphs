@@ -23,7 +23,7 @@ class Command(BaseCommand):
         n2 = Node.objects.create(graph=g, value="SecondNode")
 
         print("Creating Edge with value=foobar")
-        e1 = Edge.objects.create(value='foobar')
+        e1 = Edge.objects.create(graph=g, value='foobar')
 
         print("Relating Edge=foobar to node=FirstNode")
         ne1 = NodeEdge.objects.create(node=n1, edge=e1)
