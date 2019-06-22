@@ -60,7 +60,7 @@ NOTE: this just runs `graphs/management/commands/graph_shell.py` which is very s
 python manage.py graph_shell
 ```
 
-## Create a graph (currently via django shell or juypter)
+## Create a graph
 
 What this is doing is creating a single graph, with two nodes, and an edge between the FirstNode and SecondNode. This is a Graph and not a Directed graph since the NodeEdge model that maps nodes to edges does not encapsulate or enforce directionality. Its a bit verbose:
 
@@ -69,6 +69,8 @@ What this is doing is creating a single graph, with two nodes, and an edge betwe
 - Creates the edge (which doesnt link to any nodes)
 - Creates the edge<->node mapping for the edge to the first node
 - Creates the edge<->node mapping for the edge to the second node
+
+### django shell (IPython)
 
 ```
 jmeichle@stacy-desktop:~/projects/graphs_graphs_graphs$ python manage.py graph_shell
@@ -88,4 +90,18 @@ In [4]: e1 = Edge.objects.create(value='foobar')
 In [5]: ne1 = NodeEdge.objects.create(node=n1, edge=e1)
 
 In [6]: ne2 = NodeEdge.objects.create(node=n2, edge=e1)
+```
+
+### Management command / script
+
+```
+jmeichle@stacy-desktop:~/projects/django_graphs$ python manage.py create_dumb_graph
+DB Models Loaded. Creating a dumb Graph of two nodes linked.
+Creating graph with name=test
+Creating Node with name=FirstNode
+Creating Node with name=SecondNode
+Creating Edge with value=foobar
+Relating Edge=foobar to node=FirstNode
+Relating Edge=foobar to node=SecondNode
+Done.
 ```
